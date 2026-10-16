@@ -281,5 +281,21 @@ export const VOICE_CATALOG = [
     "sourceStart": 468.97,
     "sourceEnd": 472.46,
     "originalContext": "Kennedy's opening statement at his Senate confirmation hearing, discussing farmers and food policy. Source trim times refer to the 8m20s audio-only Commons derivative, not the full hearing. These are not remarks about animals or the game."
+  },
+  {
+    "id": "trump-mic-ramble",
+    "speaker": "trump",
+    "label": "Nobody has done more — microphone ramble",
+    "text": "And despite that, we've done more in the first three and a half years than any administration. There's been no administration that's done more. When you add it all up, there's been no—despite all of the horrible political games that have been played. But there's nobody that's been—that's been able to do what I've done.",
+    "src": "cast-clips/trump-mic-ramble.mp3",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:9_04_20_President_Trump_Holds_a_News_Conference.webm",
+    "duration": 19.64,
+    "contexts": [
+      "mic-speech"
+    ],
+    "sourceId": "trump-2020-09-04",
+    "sourceStart": 2551.38,
+    "sourceEnd": 2571.02,
+    "originalContext": "President Trump defending his administration accomplishments during the September 4, 2020 White House news conference. Contiguous archival excerpt, not remarks about the fictional ballroom. Official transcript: https://www.govinfo.gov/content/pkg/DCPD-202000655/pdf/DCPD-202000655.pdf"
   }
 ];

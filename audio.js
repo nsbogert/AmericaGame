@@ -33,6 +33,13 @@ export class AudioDirector {
     if (voice) { voice.onplaying=voice.onwaiting=voice.onstalled=voice.onended=voice.onerror=voice.onpause=null; voice.pause(); try { voice.currentTime=0; } catch {} }
     this.ducked=false; this.applyVolumes();
   }
+  stopMicSpeech() { if(this.voiceClip==='trump-mic-ramble'&&!this.voicePreview)this.stopVoice(); }
+  syncGame(game) {
+    // A preview is independent of the simulation. In-game speech is owned by the live mic.
+    if(!game)return;
+    if(game.mode!=='playing'||!game.micOn||game.trump?.phase!=='talking'||game.distraction>0)this.stopMicSpeech();
+  }
+  startMicSpeech() { this.voiceQueue=[]; return this.playVoice('trump-mic-ramble',{force:true}); }
   getVoiceState() {
     const v=this.voice, data=getClipData(this.voiceClip);
     const playing=!!(v&&data&&this.voiceReady&&!v.paused&&!v.ended&&!v.error&&!this.muted&&this.voiceEnabled&&this.voiceVolume>0&&(this.active||this.voicePreview));
@@ -85,7 +92,8 @@ export class AudioDirector {
       g.gain.setValueAtTime(0, now + delay); g.gain.linearRampToValueAtTime(amp, now + delay + .008); g.gain.exponentialRampToValueAtTime(.0001, now + delay + duration);
       o.connect(g); g.connect(c.destination); o.start(now + delay); o.stop(now + delay + duration + .01);
     };
-    if (type === 'win' || type === 'applause') [523,659,784,1047].forEach((f,i)=>tone(f,i*.09,.22,'triangle'));
+    if(type==='mic-feedback'){tone(2350,0,.22,'sine',1400);tone(3100,.035,.16,'sine',1900);}
+    else if (type === 'win' || type === 'applause') [523,659,784,1047].forEach((f,i)=>tone(f,i*.09,.22,'triangle'));
     else if (type === 'lose') [440,349,261,196].forEach((f,i)=>tone(f,i*.12,.25,'triangle'));
     else if (type === 'alert' || type === 'hit') { tone(660,0,.11,'square',440); tone(660,.16,.13,'square',330); }
     else if (type === 'goose') { tone(330,0,.18,'sawtooth',190); tone(290,.19,.2,'sawtooth',170); }
@@ -100,7 +108,8 @@ export class AudioDirector {
       const id = typeof event === 'object' ? event.id ?? event.eventId : null;
       if (typeof id === 'number') { if (id <= this.lastEvent) continue; this.lastEvent = id; }
       const type = typeof event === 'object' ? event.type : '';
-      const effects = {win:'win',lose:'lose',lunch:'goose',catch:'goose',damage:'alert',tamper:'alert',warning:'alert',briefing:'alert',vance:'alert',resolve:'stamp',delivery:'stamp',pickup:'pickup',drop:'stamp',dash:'dash',mic:'pickup',broadcast:'alert',blocked:'alert'};
+      const effects = {'job-stage':'stamp','job-complete':'stamp','mic-cutoff':'mic-feedback',win:'win',lose:'lose',lunch:'goose',catch:'goose',damage:'alert',tamper:'alert',warning:'alert',briefing:'alert',vance:'alert',resolve:'stamp',delivery:'stamp',pickup:'pickup',drop:'stamp',dash:'dash',mic:'pickup',broadcast:'alert',blocked:'alert'};
+      if(['mic-cutoff','distraction','shoo','lose','win'].includes(type))this.stopMicSpeech();
       if (type === 'distraction') this.play(String(event.text || '').toLowerCase().includes('applause') || String(event.text || '').includes('noise') ? 'applause' : 'stamp');
       else if (effects[type]) this.play(effects[type]);
       if(type==='lose'){this.voiceQueue=[];this.stopVoice();}
@@ -110,7 +119,7 @@ export class AudioDirector {
       else if(type==='distraction')this.requestVoice('trump','distraction');
       else if(type==='delivery'&&++this.deliveryCount%3===0)this.requestVoice('trump','delivery');
       else if(type==='win'){this.voiceQueue=[];this.requestVoice('trump','win',4);}
-      else if(type==='speech')this.requestVoice('trump','speech');
+      else if(type==='speech')this.startMicSpeech();
       else if(type==='shoo')this.requestVoice('trump','shoo');
       else if(type==='damage')this.requestVoice('trump','damage',2);
     }

@@ -71,9 +71,20 @@ for(const speaker of ['trump','rfk-jr','vance','hegseth']){
 }
 a.resetEvents();a.active=true;clock+=100000;a.updateGameEvents([{id:1,type:'speech'}]);assert(a.voice);a.voice.start();
 a.updateGameEvents([{id:2,type:'vance'},{id:3,type:'lunch'},{id:4,type:'briefing'}]);assert(a.voiceQueue.length<=2);assert(a.voiceQueue.length>0);const queued=a.voiceQueue[0].speaker;
-a.voice.onended();clock+=8100;a.updateGameEvents([{id:5,type:'speech'}]);assert.equal(a.getVoiceState().playing,false);a.voice.start();assert.equal(a.getVoiceState().speaker,queued,'an introduction has priority over a new ordinary quip');
+a.voice.onended();clock+=8100;a.updateGameEvents([{id:5,type:'distraction'}]);assert.equal(a.getVoiceState().playing,false);a.voice.start();assert.equal(a.getVoiceState().speaker,queued,'an introduction has priority over a new ordinary quip');
 a.setMuted(true);assert.equal(a.voiceQueue.length,0);assert.equal(a.getVoiceState().speaker,null);
 console.log('Expanded cast catalog, real-file provenance, speaker routing, preserved original clips, variation bags and bounded fair introduction queue passed.');
 
 // Terminal results can finish a queued win line; loss cancels stale cast chatter.
 a.setMuted(false);a.active=true;a.resetEvents();clock+=100000;a.playVoice('thank-you');a.voice.start();a.updateGameEvents([{id:1,type:'win'}]);assert.equal(a.voiceQueue.length,1);a.voice.onended();clock+=8100;a.tick();assert(a.voice,'queued win line drains even without another game event');a.voice.start();assert.equal(a.getVoiceState().speaker,'trump');a.requestVoice('vance','vance',3);assert(a.voiceQueue.length);a.updateGameEvents([{id:2,type:'lose'}]);assert.equal(a.voice,null);assert.equal(a.voiceQueue.length,0);clock+=10000;a.tick();assert.equal(a.voice,null);console.log('Terminal queued win and stale-loss cancellation passed.');
+// Live mic speech preempts quips and follows simulation ownership; previews remain independent.
+a.setMuted(false);a.setVoiceEnabled(true);a.setVoiceVolume(.65);a.active=true;a.resetEvents();clock+=100000;
+a.playVoice('thank-you');const interrupted=a.voice;a.updateGameEvents([{id:1,type:'speech'}]);assert.equal(a.voiceClip,'trump-mic-ramble');assert(interrupted.paused);a.voice.start();a.voice.currentTime=9.2;assert.equal(a.getVoiceState().time,9.2);assert.equal(a.getVoiceState().speaker,'trump');
+a.syncGame({mode:'playing',micOn:true,trump:{phase:'talking'},distraction:0});assert(a.voice);
+a.syncGame({mode:'playing',micOn:false,trump:{phase:'talking'},distraction:0});assert.equal(a.voice,null);
+for(const g of[{mode:'playing',micOn:true,trump:{phase:'idle'},distraction:0},{mode:'playing',micOn:true,trump:{phase:'talking'},distraction:2},{mode:'paused',micOn:true,trump:{phase:'talking'},distraction:0}]){a.startMicSpeech();a.voice.start();a.syncGame(g);assert.equal(a.voice,null);assert.equal(a.getVoiceState().amount,0);}
+a.playVoice('trump-mic-ramble',{force:true,preview:true});a.voice.start();a.syncGame({mode:'paused',micOn:false,trump:{phase:'idle'}});assert(a.voice,'cast preview is independent of game state');a.stopVoice();
+a.resetEvents();a.active=true;const heard=[];const oldPlay=a.play;a.play=type=>heard.push(type);a.updateGameEvents([{id:1,type:'mic'}]);assert(!heard.includes('mic-feedback'));a.updateGameEvents([{id:2,type:'mic-cutoff'}]);assert.equal(heard.filter(t=>t==='mic-feedback').length,1);a.updateGameEvents([{id:2,type:'mic-cutoff'}]);assert.equal(heard.filter(t=>t==='mic-feedback').length,1);a.updateGameEvents([{id:3,type:'job-stage'},{id:4,type:'job-complete'}]);assert(heard.filter(t=>t==='stamp').length>=2);a.play=oldPlay;
+a.setMuted(true);a.play('mic-feedback');assert.equal(a.getVoiceState().playing,false);a.setMuted(false);a.setSfxVolume(0);a.play('mic-feedback');
+assert(getClipData('trump-mic-ramble').duration>19&&getClipData('trump-mic-ramble').duration<21);
+console.log('Live ramble priority, real playback clock, cancellation/preview isolation, cutoff-only feedback and job reward events passed.');

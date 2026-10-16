@@ -1,6 +1,6 @@
 # AMERICA: Everything Is Fine
 
-A single-player 3D political puppet parody. Deliver three props, keep the cast from undoing your work, and get 16 clean seconds out of a 30-second live broadcast.
+A single-player 3D political puppet parody. Deliver three props, fix the teleprompter, flags and briefing cards, keep the cast from undoing your work, and get 16 clean seconds out of a 30-second live broadcast.
 
 ## Play
 
@@ -12,6 +12,7 @@ For local play, run `node build.mjs`, then `npm start`, and open http://127.0.0.
 
 - WASD / arrows: move. Clicking or tapping the floor also sets a walking destination.
 - E: pick up, deliver, catch an animal, shoo Trump nearby, or use the highlighted station.
+- Hold E (or the on-screen Interact button), stationary and empty-handed: work at the three room stations. Releasing preserves progress.
 - Space: short dash, with a roughly three-second cooldown.
 - Escape / P / Clipboard: pause.
 - Expand: full-screen room; Exit fullscreen returns to the page.
@@ -20,7 +21,7 @@ For local play, run `node build.mjs`, then `npm start`, and open http://127.0.0.
 
 Match the colored props to their destinations. Vance may change an unfinished delivery's destination. Completed stations are vulnerable: Trump takes four seconds to undo one; roaming animals take five. Interrupt Trump, catch the animals or lure them out with bait, and recover loose props for free. The misrouted briefing must be carried from the desk to the service exit.
 
-Once all three props are ready, GO LIVE starts the finale immediately. Keep the mic on to earn clean airtime, use applause or ribbon ceremonies to distract Trump, and clear the two urgent incidents before the shot ends. The shift also attempts to go live when only 30 seconds remain.
+Once all three props and all three room jobs are ready, GO LIVE starts the finale immediately. Keep the mic on to earn clean airtime, use applause or ribbon ceremonies to distract Trump, and clear the two urgent incidents before the shot ends. The shift also attempts to go live when only 30 seconds remain.
 
 ## Assets and source
 
@@ -38,6 +39,10 @@ The original GLBs retain their body rigs; `faces.js` creates facial controls at 
 
 ## Cast voices and wildlife
 
-There are 16 authentic recorded reactions: 10 Trump, two RFK Jr., two Vance, and two Hegseth. Contextual variation and a short bounded introduction queue space them out without overlap. Each speaker drives their own model’s mouth and close-up. The recording credits page preserves quotes, original context, dates and sources.
+There are 17 authentic recordings: 11 Trump, two RFK Jr., two Vance, and two Hegseth. Contextual variation and a short bounded introduction queue space them out without overlap. Each speaker drives their own model’s mouth and close-up. The recording credits page preserves quotes, original context, dates and sources.
 
 The duck and raccoon use optimized textured GLBs in `assets/models/animals`, with procedural waddling and small head/tail motion. Original source exports are kept outside the game folder under the parent project’s `assets/animals`. Existing catching, escorting and sabotage rules are unchanged.
+
+## Live-mic interruptions
+
+Trump’s speech drives a bent-elbow accordion hand gesture as well as his mouth. The close-up eases out to include his hands. At the live microphone, he launches into a longer authentic, self-congratulatory excerpt. Turning his mic off mid-speech cuts the recording and produces a brief feedback whine; normal idle mic toggles do not. Applause and ribbon distractions also interrupt the speech.
