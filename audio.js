@@ -1,3 +1,4 @@
+import {sampleViseme,getClipData,CLOSED_VISEMES} from './lip-sync.js';
 const ROOT = new URL('./assets/audio/', import.meta.url);
 export class AudioDirector {
   constructor() {
@@ -18,20 +19,35 @@ export class AudioDirector {
     this.applyVolumes();
     if (!this.muted && this.musicVolume > 0) { try { await this.music.play(); } catch {} }
   }
-  pause() { this.active = false; this.music.pause(); for (const a of this.samples.values()) a.pause(); if (this.voice) this.voice.pause(); this.ducked = false; this.applyVolumes(); }
+  pause() { this.active = false; this.music.pause(); for (const a of this.samples.values()) a.pause(); this.stopVoice(); }
   setMusicVolume(value) { this.musicVolume = Math.max(0, Math.min(1, Number(value) || 0)); this.applyVolumes(); if (this.active && !this.muted && this.musicVolume) this.music.play().catch(() => {}); }
   setSfxVolume(value) { this.sfxVolume = Math.max(0, Math.min(1, Number(value) || 0)); this.applyVolumes(); }
-  setVoiceVolume(value) { this.voiceVolume = Math.max(0, Math.min(1, Number(value) || 0)); if (this.voice) this.voice.volume = this.muted ? 0 : this.voiceVolume; }
-  setVoiceEnabled(value) { this.voiceEnabled = !!value; if (!value && this.voice) { this.voice.pause(); this.ducked = false; this.applyVolumes(); } }
+  setVoiceVolume(value) { this.voiceVolume = Math.max(0, Math.min(1, Number(value) || 0)); if (!this.voiceVolume) this.stopVoice(); if (this.voice) this.voice.volume = this.muted ? 0 : this.voiceVolume; }
+  setVoiceEnabled(value) { this.voiceEnabled = !!value; if (!value) this.stopVoice(); }
   setVolume(value) { this.setMusicVolume(value); this.setSfxVolume(value); }
-  setMuted(value) { this.muted = !!value; this.applyVolumes(); if (this.muted) this.music.pause(); else if (this.active) this.music.play().catch(() => {}); }
+  setMuted(value) { this.muted = !!value; this.applyVolumes(); if (this.muted) { this.music.pause(); this.stopVoice(); } else if (this.active) this.music.play().catch(() => {}); }
   applyVolumes() { this.music.volume = this.muted ? 0 : this.musicVolume * (this.ducked ? .25 : 1); for (const a of this.samples.values()) a.volume = this.muted ? 0 : this.sfxVolume; if (this.voice) this.voice.volume = this.muted ? 0 : this.voiceVolume; }
-  playVoice(name) {
-    if (!this.active || this.muted || !this.voiceEnabled || !this.voiceVolume || performance.now() - this.lastVoice < 8000 || (this.voice && !this.voice.paused)) return;
-    this.lastVoice = performance.now(); this.voice = new Audio(new URL(`trump-clips/${name}.mp3`, ROOT));
+  stopVoice() {
+    const voice=this.voice; this.voice=null; this.voiceClip=null; this.voiceReady=false; this.voicePreview=false;
+    if (voice) { voice.onplaying=voice.onwaiting=voice.onstalled=voice.onended=voice.onerror=voice.onpause=null; voice.pause(); try { voice.currentTime=0; } catch {} }
+    this.ducked=false; this.applyVolumes();
+  }
+  getVoiceState() {
+    const v=this.voice, data=getClipData(this.voiceClip);
+    const playing=!!(v&&data&&this.voiceReady&&!v.paused&&!v.ended&&!v.error&&!this.muted&&this.voiceEnabled&&this.voiceVolume>0&&(this.active||this.voicePreview));
+    const time=playing&&Number.isFinite(v.currentTime)?v.currentTime:0;
+    return {playing,clip:playing?this.voiceClip:null,label:playing?data.label:'',time,duration:playing?(Number.isFinite(v.duration)?v.duration:data.duration):0,...(playing?sampleViseme(this.voiceClip,time):{viseme:'closed',amount:0,visemes:{...CLOSED_VISEMES}})};
+  }
+  playVoice(name,{force=false,preview=false}={}) {
+    if (!getClipData(name)||(!this.active&&!preview)||this.muted||!this.voiceEnabled||!this.voiceVolume||(!force&&(performance.now()-this.lastVoice<8000||(this.voice&&!this.voice.paused)))) return;
+    this.stopVoice(); this.lastVoice=performance.now(); this.voiceClip=name; this.voicePreview=preview; this.voiceReady=false;
+    const voice=this.voice=new Audio(new URL(`trump-clips/${name}.mp3`, ROOT));
     this.ducked = true; this.applyVolumes();
-    const release = () => { this.ducked = false; this.applyVolumes(); };
-    this.voice.onended = release; this.voice.onerror = release; this.voice.play().catch(release);
+    const release=()=>{if(this.voice===voice)this.stopVoice();};
+    voice.onplaying=()=>{if(this.voice===voice)this.voiceReady=true;};
+    voice.onwaiting=voice.onstalled=()=>{if(this.voice===voice)this.voiceReady=false;};
+    voice.onended=voice.onerror=voice.onpause=release;
+    try { const result=voice.play(); if(result?.catch)result.catch(release); } catch { release(); }
   }
   play(type = 'stamp') {
     if (!this.active || this.muted || !this.sfxVolume) return;
@@ -74,6 +90,6 @@ export class AudioDirector {
       else if (type === 'speech') this.playVoice('whats-going-on');
     }
   }
-  resetEvents() { this.lastEvent = 0; this.deliveryCount = 0; }
+  resetEvents() { this.lastEvent = 0; this.deliveryCount = 0; this.stopVoice(); this.lastVoice=-10000; }
 }
 export default AudioDirector;

@@ -16,6 +16,7 @@ For local play, run `node build.mjs`, then `npm start`, and open http://127.0.0.
 - Escape / P / Clipboard: pause.
 - Expand: full-screen room; Exit fullscreen returns to the page.
 - Mix audio: independent music, effects, and archival voice controls.
+- Cast close-up & voice test: pauses the shift to inspect all five faces, try reactions and mouth shapes, and audition the four real Trump clips. Done or Escape restores the previous screen.
 
 Match the colored props to their destinations. Vance may change an unfinished delivery's destination. Completed stations are vulnerable: Trump takes four seconds to undo one; roaming animals take five. Interrupt Trump, catch the animals or lure them out with bait, and recover loose props for free. The misrouted briefing must be carried from the desk to the service exit.
 
@@ -28,3 +29,9 @@ Once all three props are ready, GO LIVE starts the finale immediately. Keep the 
 `sim.js` owns deterministic game rules, `renderer.js` the Three.js room and characters, `app.js` the interface and controls, and `audio.js` the audio mix. Run `npm test` for routed winning playthroughs and focused mechanics checks. `node build.mjs` refreshes the deployable `dist/` folder.
 
 The main project documentation has the current gameplay notes, character production records, source attributions, and verification results. The original design PDF is the initial design baseline; later gameplay changes are recorded in `../docs/gameplay-v2.md`.
+
+## Expressive puppets
+
+All five characters have runtime facial morphs, blinks and event-driven reactions. A close-up camera shows the same 3D actor beside the ballroom. Trump uses five stylized speech shapes timed to the actual recording, including its pauses. Mute, pause, stop and disabled voice close the speaking mouth. These are approximate puppet mouth shapes, not exact human lip reading.
+
+The original GLBs retain their body rigs; `faces.js` creates facial controls at runtime. `lip-sync.js` samples the measured audio envelopes and authored shape timing. Run `node audio-tests.mjs` and `node face-tests.mjs` for audio lifecycle and real-model geometry checks.
