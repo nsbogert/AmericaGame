@@ -1,43 +1,30 @@
-# AMERICA — Everything Is Fine
+# AMERICA: Everything Is Fine
 
-A playable single-player fictional parody. Original procedural Canvas puppet art, no external assets, libraries, accounts, or services required.
+A single-player 3D political puppet parody. Deliver three props, keep the cast from undoing your work, and get 16 clean seconds out of a 30-second live broadcast.
 
-## Launch
+## Play
 
-From `/Users/nbogert/Movies/Final/america-game/game`, run:
+The private published game is at https://america-everything-is-fine.nbogert.chatgpt.site.
 
-```sh
-npm start
-```
+For local play, run `node build.mjs`, then `npm start`, and open http://127.0.0.1:8080/dist/. Three.js is vendored locally, and models and audio are served with the game. No account keys or remote inference are needed to play. A desktop browser with WebGL is recommended.
 
-Open `http://localhost:8080/dist/` in a browser. A local HTTP server is required because the simulation uses JavaScript modules. The deployable site is `dist/`.
+## Controls
 
-## Controls and objective
+- WASD / arrows: move. Clicking or tapping the floor also sets a walking destination.
+- E: pick up, deliver, catch an animal, shoo Trump nearby, or use the highlighted station.
+- Space: short dash, with a roughly three-second cooldown.
+- Escape / P / Clipboard: pause.
+- Expand: full-screen room; Exit fullscreen returns to the page.
+- Mix audio: independent music, effects, and archival voice controls.
 
-- WASD or arrows: move the staffer with the dark bun and teal jacket.
-- Hold E near a labeled station: work. Progress is retained when you leave.
-- Tab, P, Escape, or the Clipboard button: pause/resume and review tasks.
-- Sound button: optional sound, muted by default.
+Match the colored props to their destinations. Vance may change an unfinished delivery's destination. Completed stations are vulnerable: Trump takes four seconds to undo one; roaming animals take five. Interrupt Trump, catch the animals or lure them out with bait, and recover loose props for free. The misrouted briefing must be carried from the desk to the service exit.
 
-Choose a five-minute first shift or three-minute demo at the start. Finish four guest groups, lights, podium, gold finish, and ribbon. Clear unresolved requests and escort the lunch delivery out, then hold E at GO LIVE for 20 seconds. Main jobs cost a total of $395 from a $600 budget; requests are free repairs. Completed preparations are never erased.
+Once all three props are ready, GO LIVE starts the finale immediately. Keep the mic on to earn clean airtime, use applause or ribbon ceremonies to distract Trump, and clear the two urgent incidents before the shot ends. The shift also attempts to go live when only 30 seconds remain.
 
-The first 20 seconds are preparation before the boss arrives. He notices a live microphone, unfinished gold, or ceremonial opportunity for five seconds, then physically walks to the station and inspects it for three seconds before issuing a request. Distractions interrupt noticing, approaching, or inspecting. At most two unresolved requests exist. Hold E at the orange exclamation to repair a request in four seconds. Ignored requests gradually reduce presidential patience. Use the applause machine to redirect him and hold him there for 20 seconds after arrival; its cooldown is 38 seconds. Once initially prepared, the ribbon is reusable for a 12-second distraction with a 28-second cooldown. The clock and patience can end a shift, with a clean replay from the result screen.
+## Assets and source
 
-Once per shift, after four preparations or 70 seconds (and never during preparation), RFK Jr brings an invented wildlife lunch delivery. A raccoon wanders toward guests and a goose crosses the camera area. Hold E for three seconds at the central CATERING CRATE to lure both safely out, then allow five seconds for departure. While active, lunch drains patience slowly without undoing any preparation. Broadcasting requires the animals to have left.
+`assets/models` contains delivery-sized textured GLBs; original Meshy exports are preserved in the parent project. `assets/audio` contains a Suno instrumental loop and Suno stamp, goose, and applause effects, plus small synthesized gameplay cues. `assets/audio/trump-clips/sources.json` documents four authentic 2020 White House speech excerpts. Game dialogue is invented parody and is not a transcript of those clips.
 
-## Files and validation
+`sim.js` owns deterministic game rules, `renderer.js` the Three.js room and characters, `app.js` the interface and controls, and `audio.js` the audio mix. Run `npm test` for routed winning playthroughs and focused mechanics checks. `node build.mjs` refreshes the deployable `dist/` folder.
 
-`sim.js` is the pure game simulation; `app.js` draws and controls it. `index.html` and `style.css` provide the interface. `dist/` contains identical deployment copies. After editing source, run `node build.mjs` to refresh `dist/`.
-
-```sh
-npm test
-node --check app.js
-```
-
-Logic tests exercise a complete solo win and budget, pause, capped recoverable requests, attention redirection, and timeout. Additional checks cover the preparation phase, physical arrivals, interruptible tells, ribbon cooldown, critical request gating, and win precedence at the deadline. Wildlife checks cover one-time delivery, no preparation spawn, safe departure, preparation preservation, and broadcast gating. Browser and human playtesting are separate acceptance checks.
-
-## Art and future models
-
-The current renderer draws 2D procedural puppet characters. `assets/manifest.json` reserves future GLB slots but does not load or display GLB models. Meshy source models and art references elsewhere in the project must not be described as rendered game assets. A future 3D renderer can retain station IDs and simulation behavior.
-
-No real news claims or real dialogue appear in gameplay. Every event and line is invented satire.
+The main project documentation has the current gameplay notes, character production records, source attributions, and verification results. The original design PDF is the initial design baseline; later gameplay changes are recorded in `../docs/gameplay-v2.md`.

@@ -1,0 +1,41 @@
+{
+  "speaker": "Donald Trump",
+  "recorded": "2020-09-04",
+  "sourceTitle": "President Trump Holds a News Conference",
+  "producer": "The White House",
+  "source": "https://commons.wikimedia.org/wiki/File:9_04_20_President_Trump_Holds_a_News_Conference.webm",
+  "transcript": "https://www.govinfo.gov/content/pkg/DCPD-202000655/pdf/DCPD-202000655.pdf",
+  "license": "Public domain, US federal government work (Commons source designation)",
+  "context": "Original remarks concerned the US economy. Short unaltered utterances are reused as reactions in a fictional parody game. No synthetic speech.",
+  "edits": "Excerpted, mono MP3, level normalization and 15/35ms boundary fades. Words and order unchanged.",
+  "clips": [
+    {
+      "file": "thank-you.mp3",
+      "startSeconds": 3.12,
+      "endSeconds": 4.45,
+      "caption": "Thank you.",
+      "suggestedEvent": "distraction"
+    },
+    {
+      "file": "pretty-amazing.mp3",
+      "startSeconds": 18.48,
+      "endSeconds": 20.12,
+      "caption": "It\u2019s been pretty amazing.",
+      "suggestedEvent": "delivery"
+    },
+    {
+      "file": "a-record.mp3",
+      "startSeconds": 32.13,
+      "endSeconds": 34.3,
+      "caption": "That\u2019s a record, by far.",
+      "suggestedEvent": "win"
+    },
+    {
+      "file": "whats-going-on.mp3",
+      "startSeconds": 16.3,
+      "endSeconds": 18.1,
+      "caption": "You see what\u2019s going on.",
+      "suggestedEvent": "speech"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "staffer",
+    "url": "./assets/models/staffer.glb",
+    "bytes": 4368048,
+    "sourceBytes": 21800388,
+    "rigged": true,
+    "animations": [
+      "Running",
+      "Walking"
+    ]
+  },
+  {
+    "id": "trump",
+    "url": "./assets/models/trump.glb",
+    "bytes": 4298844,
+    "sourceBytes": 21017876,
+    "rigged": true,
+    "animations": [
+      "Running",
+      "Walking"
+    ]
+  },
+  {
+    "id": "vance",
+    "url": "./assets/models/vance.glb",
+    "bytes": 3817620,
+    "sourceBytes": 20882444,
+    "rigged": true,
+    "animations": [
+      "Running",
+      "Walking"
+    ]
+  },
+  {
+    "id": "rfk-jr",
+    "url": "./assets/models/rfk-jr.glb",
+    "bytes": 3967860,
+    "sourceBytes": 22472872,
+    "rigged": true,
+    "animations": [
+      "Running",
+      "Walking"
+    ]
+  },
+  {
+    "id": "hegseth",
+    "url": "./assets/models/hegseth.glb",
+    "bytes": 4560224,
+    "sourceBytes": 22834788,
+    "rigged": true,
+    "animations": [
+      "Running",
+      "Walking"
+    ]
+  }
+]
