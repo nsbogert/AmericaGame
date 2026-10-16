@@ -50,3 +50,30 @@ for(const clip of ['thank-you','pretty-amazing','a-record','whats-going-on']){
 }
 assert.equal(sampleViseme('unknown',.3).amount,0);
 console.log('Audio lifecycle, preview isolation, playback clock, cooldown, stale callback and four-clip silence tests passed.');
+// Expanded catalog must route real files and visemes to their own speaker.
+const {VOICE_CATALOG}=await import('./assets/audio/voice-catalog.js');
+const {access}=await import('node:fs/promises');
+for(const speaker of ['trump','rfk-jr','vance','hegseth']){
+ const entries=VOICE_CATALOG.filter(c=>c.speaker===speaker);assert(entries.length,`${speaker} has actual sourced clips`);
+ for(const entry of entries){
+  assert(/^https:\/\//.test(entry.sourceUrl),`${entry.id} has a source recording`);assert(entry.contexts.length);assert(entry.text||entry.label);
+  await access(new URL('./assets/audio/'+entry.src,import.meta.url));
+  const data=getClipData(entry.id);assert(data&&data.duration>0&&data.envelope.length>0,`${entry.id} measured visemes exist`);
+ }
+ a.playVoice(entries[0].id,{force:true,preview:true});a.voice.start();assert.equal(a.getVoiceState().speaker,speaker);assert.equal(a.getVoiceState().sourceUrl,entries[0].sourceUrl);assert(a.voice.url.endsWith(entries[0].src));a.stopVoice();
+}
+const {VOICE_VISEMES:originalFour}=await import('./assets/audio/trump-clips/visemes.js');
+for(const id of ['thank-you','pretty-amazing','a-record','whats-going-on'])assert.deepEqual(getClipData(id),originalFour.clips[id],`${id} timing retained unchanged`);
+// A context bag varies before refilling and cannot repeat its boundary choice.
+for(const speaker of ['trump','rfk-jr','vance','hegseth']){
+ const general=VOICE_CATALOG.filter(e=>e.speaker===speaker&&e.contexts.includes('general'));
+ if(general.length>1){const picks=Array.from({length:general.length},()=>a.chooseVoice(speaker,'unmatched-test-context'));assert.equal(new Set(picks).size,general.length);assert.notEqual(a.chooseVoice(speaker,'unmatched-test-context'),picks.at(-1));}
+}
+a.resetEvents();a.active=true;clock+=100000;a.updateGameEvents([{id:1,type:'speech'}]);assert(a.voice);a.voice.start();
+a.updateGameEvents([{id:2,type:'vance'},{id:3,type:'lunch'},{id:4,type:'briefing'}]);assert(a.voiceQueue.length<=2);assert(a.voiceQueue.length>0);const queued=a.voiceQueue[0].speaker;
+a.voice.onended();clock+=8100;a.updateGameEvents([{id:5,type:'speech'}]);assert.equal(a.getVoiceState().playing,false);a.voice.start();assert.equal(a.getVoiceState().speaker,queued,'an introduction has priority over a new ordinary quip');
+a.setMuted(true);assert.equal(a.voiceQueue.length,0);assert.equal(a.getVoiceState().speaker,null);
+console.log('Expanded cast catalog, real-file provenance, speaker routing, preserved original clips, variation bags and bounded fair introduction queue passed.');
+
+// Terminal results can finish a queued win line; loss cancels stale cast chatter.
+a.setMuted(false);a.active=true;a.resetEvents();clock+=100000;a.playVoice('thank-you');a.voice.start();a.updateGameEvents([{id:1,type:'win'}]);assert.equal(a.voiceQueue.length,1);a.voice.onended();clock+=8100;a.tick();assert(a.voice,'queued win line drains even without another game event');a.voice.start();assert.equal(a.getVoiceState().speaker,'trump');a.requestVoice('vance','vance',3);assert(a.voiceQueue.length);a.updateGameEvents([{id:2,type:'lose'}]);assert.equal(a.voice,null);assert.equal(a.voiceQueue.length,0);clock+=10000;a.tick();assert.equal(a.voice,null);console.log('Terminal queued win and stale-loss cancellation passed.');

@@ -1,0 +1,505 @@
+{
+  "notice": "Authentic archival speech excerpts used as reactions in a fictional political puppet parody. No voice cloning, word reordering or synthesized speech. Game situations and dialogue are invented and do not describe the source events.",
+  "edits": "Contiguous excerpts; mono 128kbps MP3; loudness normalization and short boundary fades. Original files preserved outside the game delivery bundle.",
+  "nonEndorsementStatement": "The appearance of U.S. Department of War (DoW) visual information does not imply or constitute DoW endorsement.",
+  "sources": [
+    {
+      "speaker": "Donald Trump",
+      "recorded": "2020-09-04",
+      "sourceTitle": "President Trump Holds a News Conference",
+      "producer": "The White House",
+      "source": "https://commons.wikimedia.org/wiki/File:9_04_20_President_Trump_Holds_a_News_Conference.webm",
+      "transcript": "https://www.govinfo.gov/content/pkg/DCPD-202000655/pdf/DCPD-202000655.pdf",
+      "license": "Public domain, US federal government work (Commons source designation)",
+      "context": "Original remarks concerned the US economy. Short unaltered utterances are reused as reactions in a fictional parody game. No synthetic speech.",
+      "edits": "Excerpted, mono MP3, level normalization and 15/35ms boundary fades. Words and order unchanged.",
+      "clips": [
+        {
+          "file": "thank-you.mp3",
+          "startSeconds": 3.12,
+          "endSeconds": 4.45,
+          "caption": "Thank you.",
+          "suggestedEvent": "distraction"
+        },
+        {
+          "file": "pretty-amazing.mp3",
+          "startSeconds": 18.48,
+          "endSeconds": 20.12,
+          "caption": "It’s been pretty amazing.",
+          "suggestedEvent": "delivery"
+        },
+        {
+          "file": "a-record.mp3",
+          "startSeconds": 32.13,
+          "endSeconds": 34.3,
+          "caption": "That’s a record, by far.",
+          "suggestedEvent": "win"
+        },
+        {
+          "file": "whats-going-on.mp3",
+          "startSeconds": 16.3,
+          "endSeconds": 18.1,
+          "caption": "You see what’s going on.",
+          "suggestedEvent": "speech"
+        }
+      ]
+    },
+    {
+      "sourceId": "maha-2025-11-12",
+      "sourceTitle": "Vice President JD Vance & Secretary Kennedy Deliver Remarks at the Make America Healthy Again Summit",
+      "source": "https://commons.wikimedia.org/wiki/File:Vice_President_JD_Vance_%26_Secretary_Kennedy_Deliver_Remarks_at_the_Make_America_Healthy_Again_Summit.webm",
+      "media": "https://upload.wikimedia.org/wikipedia/commons/2/28/Vice_President_JD_Vance_%26_Secretary_Kennedy_Deliver_Remarks_at_the_Make_America_Healthy_Again_Summit.webm",
+      "producer": "The White House",
+      "recorded": "2025-11-12",
+      "license": "Public domain, US federal government work; Commons PD-USGov Executive Office designation.",
+      "context": "Public interview between Secretary Kennedy and Vice President Vance. Selected lines are interview jokes, not statements about the game."
+    },
+    {
+      "speaker": "Pete Hegseth",
+      "speakerId": "hegseth",
+      "sourceTitle": "SECWAR Hegseth Speaks About U.S. Military Lethality",
+      "source": "https://www.dvidshub.net/video/1011695/secwar-hegseth-speaks-about-us-military-lethality",
+      "media": "https://d34w7g4gy10iej.cloudfront.net/video/2606/DOD_111787690/DOD_111787690.mp4",
+      "recorded": "2026-06-16",
+      "producer": "Office of the Secretary of War Public Affairs; U.S. Army Staff Sgt. Daniel Proper",
+      "license": "DVIDS designates this recording PUBLIC DOMAIN; official US government production.",
+      "licenseUrl": "https://www.dvidshub.net/about/copyright",
+      "disclaimer": "The appearance of U.S. Department of War (DoW) visual information does not imply or constitute DoW endorsement.",
+      "context": "Official message about military capability. Short contiguous excerpts reused as reactions in a fictional political puppet parody, not remarks about the game events.",
+      "edits": "Contiguous excerpts, mono MP3, loudness normalization, short boundary fades. No word reordering or synthetic speech.",
+      "clips": [
+        {
+          "id": "hegseth-time-and-place",
+          "file": "hegseth-time-and-place.mp3",
+          "startSeconds": 9.62,
+          "endSeconds": 11.8,
+          "caption": "At the time and place of our choosing.",
+          "events": [
+            "briefing"
+          ]
+        },
+        {
+          "id": "hegseth-most-lethal",
+          "file": "hegseth-most-lethal.mp3",
+          "startSeconds": 15.91,
+          "endSeconds": 19.15,
+          "caption": "The most lethal the world has ever seen.",
+          "events": [
+            "briefing",
+            "damage"
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": "Donald Trump",
+      "speakerId": "trump",
+      "sourceTitle": "President Trump Holds a News Conference March 13 2020",
+      "source": "https://commons.wikimedia.org/wiki/File:President_Trump_Holds_a_News_Conference_March_13_2020.webm",
+      "recorded": "2020-03-13",
+      "producer": "The White House",
+      "license": "Commons designates this White House official recording PD-USGov-POTUS. Original video uploader attribution has not been independently reviewed by Commons.",
+      "context": "Original response concerned COVID-19 testing. Contiguous excerpt reused as a reaction in a fictional political puppet parody, not a remark about game events.",
+      "edits": "Excerpted, mono MP3, level normalized and boundary fades; no rearranged words or synthetic speech.",
+      "clips": [
+        {
+          "id": "trump-no-responsibility",
+          "file": "trump-no-responsibility.mp3",
+          "startSeconds": 2284.28,
+          "endSeconds": 2286.42,
+          "caption": "No, I don’t take responsibility at all.",
+          "events": [
+            "damage",
+            "shoo"
+          ],
+          "words": [
+            {
+              "text": "No",
+              "start": 0,
+              "end": 0.46
+            },
+            {
+              "text": "I",
+              "start": 0.48,
+              "end": 0.54
+            },
+            {
+              "text": "don’t",
+              "start": 0.54,
+              "end": 0.78
+            },
+            {
+              "text": "take",
+              "start": 0.78,
+              "end": 1.04
+            },
+            {
+              "text": "responsibility",
+              "start": 1.04,
+              "end": 1.66
+            },
+            {
+              "text": "at",
+              "start": 1.66,
+              "end": 1.96
+            },
+            {
+              "text": "all",
+              "start": 1.96,
+              "end": 2.12
+            }
+          ]
+        },
+        {
+          "id": "trump-nasty-question",
+          "file": "trump-nasty-question.mp3",
+          "startSeconds": 3284.46,
+          "endSeconds": 3286.06,
+          "caption": "Well, I just think it’s a nasty question.",
+          "events": [
+            "shoo",
+            "speech"
+          ],
+          "context": "Original response to a reporter asking about the pandemic response office.",
+          "words": [
+            {
+              "text": "Well",
+              "start": 0.04,
+              "end": 0.26
+            },
+            {
+              "text": "I",
+              "start": 0.34,
+              "end": 0.34
+            },
+            {
+              "text": "just",
+              "start": 0.34,
+              "end": 0.46
+            },
+            {
+              "text": "think",
+              "start": 0.46,
+              "end": 0.58
+            },
+            {
+              "text": "it’s",
+              "start": 0.58,
+              "end": 0.74
+            },
+            {
+              "text": "a",
+              "start": 0.74,
+              "end": 0.88
+            },
+            {
+              "text": "nasty",
+              "start": 0.88,
+              "end": 1.14
+            },
+            {
+              "text": "question",
+              "start": 1.14,
+              "end": 1.58
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "rfk-senate-2025-01-29",
+      "sourceTitle": "RFK Jr.'s Opening Statement to the U.S Senate during a Confirmation Hearing",
+      "source": "https://commons.wikimedia.org/wiki/File:RFK_Jr.%27s_Opening_Statement_to_the_U.S_Senate_during_a_Confirmation_Hearing.ogg",
+      "media": "https://upload.wikimedia.org/wikipedia/commons/f/f9/RFK_Jr.%27s_Opening_Statement_to_the_U.S_Senate_during_a_Confirmation_Hearing.ogg",
+      "recorded": "2025-01-29",
+      "producer": "United States Senate",
+      "license": "Commons designates the underlying Senate recording public domain, PD US Congress. This audio-only Commons derivative is attributed to the United States Senate.",
+      "context": "Kennedy's opening statement at his Senate confirmation hearing, discussing farmers and food policy. Source trim times refer to the 8m20s audio-only Commons derivative, not the full hearing. These are not remarks about animals or the game."
+    }
+  ],
+  "clips": [
+    {
+      "id": "thank-you",
+      "speaker": "trump",
+      "label": "Thank you.",
+      "text": "Thank you.",
+      "src": "trump-clips/thank-you.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:9_04_20_President_Trump_Holds_a_News_Conference.webm",
+      "duration": 1.33,
+      "contexts": [
+        "distraction",
+        "general"
+      ],
+      "sourceId": "trump-2020-09-04",
+      "sourceStart": 3.12,
+      "sourceEnd": 4.45,
+      "originalContext": "Original remarks concerned the US economy. Short unaltered utterances are reused as reactions in a fictional parody game. No synthetic speech."
+    },
+    {
+      "id": "pretty-amazing",
+      "speaker": "trump",
+      "label": "It’s been pretty amazing.",
+      "text": "It’s been pretty amazing.",
+      "src": "trump-clips/pretty-amazing.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:9_04_20_President_Trump_Holds_a_News_Conference.webm",
+      "duration": 1.64,
+      "contexts": [
+        "delivery",
+        "general"
+      ],
+      "sourceId": "trump-2020-09-04",
+      "sourceStart": 18.48,
+      "sourceEnd": 20.12,
+      "originalContext": "Original remarks concerned the US economy. Short unaltered utterances are reused as reactions in a fictional parody game. No synthetic speech."
+    },
+    {
+      "id": "a-record",
+      "speaker": "trump",
+      "label": "That’s a record, by far.",
+      "text": "That’s a record, by far.",
+      "src": "trump-clips/a-record.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:9_04_20_President_Trump_Holds_a_News_Conference.webm",
+      "duration": 2.17,
+      "contexts": [
+        "win",
+        "general"
+      ],
+      "sourceId": "trump-2020-09-04",
+      "sourceStart": 32.13,
+      "sourceEnd": 34.3,
+      "originalContext": "Original remarks concerned the US economy. Short unaltered utterances are reused as reactions in a fictional parody game. No synthetic speech."
+    },
+    {
+      "id": "whats-going-on",
+      "speaker": "trump",
+      "label": "You see what’s going on.",
+      "text": "You see what’s going on.",
+      "src": "trump-clips/whats-going-on.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:9_04_20_President_Trump_Holds_a_News_Conference.webm",
+      "duration": 1.8,
+      "contexts": [
+        "speech",
+        "general"
+      ],
+      "sourceId": "trump-2020-09-04",
+      "sourceStart": 16.3,
+      "sourceEnd": 18.1,
+      "originalContext": "Original remarks concerned the US economy. Short unaltered utterances are reused as reactions in a fictional parody game. No synthetic speech."
+    },
+    {
+      "id": "trump-big-declines",
+      "speaker": "trump",
+      "label": "Very big declines.",
+      "text": "Very big declines.",
+      "src": "cast-clips/trump-big-declines.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:9_04_20_President_Trump_Holds_a_News_Conference.webm",
+      "duration": 1.26,
+      "contexts": [
+        "damage",
+        "lose",
+        "general"
+      ],
+      "sourceId": "trump-2020-09-04",
+      "sourceStart": 65.57,
+      "sourceEnd": 66.83,
+      "originalContext": "Original remarks concerned US economic and employment statistics, not the game."
+    },
+    {
+      "id": "trump-well-documented",
+      "speaker": "trump",
+      "label": "That was well-documented, as you know.",
+      "text": "That was well-documented, as you know.",
+      "src": "cast-clips/trump-well-documented.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:9_04_20_President_Trump_Holds_a_News_Conference.webm",
+      "duration": 2.54,
+      "contexts": [
+        "shoo",
+        "speech",
+        "general"
+      ],
+      "sourceId": "trump-2020-09-04",
+      "sourceStart": 81.56,
+      "sourceEnd": 84.1,
+      "originalContext": "Original remarks concerned US economic and employment statistics, not the game."
+    },
+    {
+      "id": "trump-all-time-high",
+      "speaker": "trump",
+      "label": "A new all-time high.",
+      "text": "A new all-time high.",
+      "src": "cast-clips/trump-all-time-high.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:9_04_20_President_Trump_Holds_a_News_Conference.webm",
+      "duration": 1.55,
+      "contexts": [
+        "win",
+        "delivery",
+        "general"
+      ],
+      "sourceId": "trump-2020-09-04",
+      "sourceStart": 115.7,
+      "sourceEnd": 117.25,
+      "originalContext": "Original remarks concerned US economic and employment statistics, not the game."
+    },
+    {
+      "id": "trump-think-of-that",
+      "speaker": "trump",
+      "label": "So think of that.",
+      "text": "So think of that.",
+      "src": "cast-clips/trump-think-of-that.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:9_04_20_President_Trump_Holds_a_News_Conference.webm",
+      "duration": 0.75,
+      "contexts": [
+        "distraction",
+        "speech",
+        "general"
+      ],
+      "sourceId": "trump-2020-09-04",
+      "sourceStart": 117.28,
+      "sourceEnd": 118.03,
+      "originalContext": "Original remarks concerned US economic and employment statistics, not the game."
+    },
+    {
+      "id": "vance-no-thinking",
+      "speaker": "vance",
+      "label": "I don't have to think at all to do an interview.",
+      "text": "I don't have to think at all to do an interview.",
+      "src": "cast-clips/vance-no-thinking.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vice_President_JD_Vance_%26_Secretary_Kennedy_Deliver_Remarks_at_the_Make_America_Healthy_Again_Summit.webm",
+      "duration": 2.06,
+      "contexts": [
+        "vance",
+        "speech",
+        "general"
+      ],
+      "sourceId": "maha-2025-11-12",
+      "sourceStart": 196.73,
+      "sourceEnd": 198.79,
+      "originalContext": "Vance joked that an interview required answering questions rather than preparing a speech."
+    },
+    {
+      "id": "vance-regret-event",
+      "speaker": "vance",
+      "label": "I regret coming to this event, based on that question.",
+      "text": "I regret coming to this event, based on that question.",
+      "src": "cast-clips/vance-regret-event.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vice_President_JD_Vance_%26_Secretary_Kennedy_Deliver_Remarks_at_the_Make_America_Healthy_Again_Summit.webm",
+      "duration": 2.91,
+      "contexts": [
+        "vance",
+        "resolve",
+        "general"
+      ],
+      "sourceId": "maha-2025-11-12",
+      "sourceStart": 1489.94,
+      "sourceEnd": 1492.85,
+      "originalContext": "Vance joked about being asked to name presidents from Ohio."
+    },
+    {
+      "id": "hegseth-time-and-place",
+      "speaker": "hegseth",
+      "label": "At the time and place of our choosing.",
+      "text": "At the time and place of our choosing.",
+      "src": "cast-clips/hegseth-time-and-place.mp3",
+      "sourceUrl": "https://www.dvidshub.net/video/1011695/secwar-hegseth-speaks-about-us-military-lethality",
+      "duration": 2.18,
+      "contexts": [
+        "briefing",
+        "general"
+      ],
+      "sourceId": "hegseth-official",
+      "sourceStart": 9.62,
+      "sourceEnd": 11.8,
+      "originalContext": "Official message about military capability. Short contiguous excerpts reused as reactions in a fictional political puppet parody, not remarks about the game events."
+    },
+    {
+      "id": "hegseth-most-lethal",
+      "speaker": "hegseth",
+      "label": "The most lethal the world has ever seen.",
+      "text": "The most lethal the world has ever seen.",
+      "src": "cast-clips/hegseth-most-lethal.mp3",
+      "sourceUrl": "https://www.dvidshub.net/video/1011695/secwar-hegseth-speaks-about-us-military-lethality",
+      "duration": 3.24,
+      "contexts": [
+        "briefing",
+        "damage",
+        "general"
+      ],
+      "sourceId": "hegseth-official",
+      "sourceStart": 15.91,
+      "sourceEnd": 19.15,
+      "originalContext": "Official message about military capability. Short contiguous excerpts reused as reactions in a fictional political puppet parody, not remarks about the game events."
+    },
+    {
+      "id": "trump-no-responsibility",
+      "speaker": "trump",
+      "label": "No, I don’t take responsibility at all.",
+      "text": "No, I don’t take responsibility at all.",
+      "src": "cast-clips/trump-no-responsibility.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:President_Trump_Holds_a_News_Conference_March_13_2020.webm",
+      "duration": 2.14,
+      "contexts": [
+        "damage",
+        "shoo",
+        "general"
+      ],
+      "sourceId": "trump-official",
+      "sourceStart": 2284.28,
+      "sourceEnd": 2286.42,
+      "originalContext": "Original response concerned COVID-19 testing. Contiguous excerpt reused as a reaction in a fictional political puppet parody, not a remark about game events."
+    },
+    {
+      "id": "trump-nasty-question",
+      "speaker": "trump",
+      "label": "Well, I just think it’s a nasty question.",
+      "text": "Well, I just think it’s a nasty question.",
+      "src": "cast-clips/trump-nasty-question.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:President_Trump_Holds_a_News_Conference_March_13_2020.webm",
+      "duration": 1.6,
+      "contexts": [
+        "shoo",
+        "speech",
+        "general"
+      ],
+      "sourceId": "trump-official",
+      "sourceStart": 3284.46,
+      "sourceEnd": 3286.06,
+      "originalContext": "Original response to a reporter asking about the pandemic response office."
+    },
+    {
+      "id": "rfk-food-producers",
+      "speaker": "rfk-jr",
+      "label": "I want to work with our farmers and food producers.",
+      "text": "I want to work with our farmers and food producers.",
+      "src": "cast-clips/rfk-food-producers.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:RFK_Jr.%27s_Opening_Statement_to_the_U.S_Senate_during_a_Confirmation_Hearing.ogg",
+      "duration": 3.32,
+      "contexts": [
+        "lunch",
+        "resolve",
+        "general"
+      ],
+      "sourceId": "rfk-senate-2025-01-29",
+      "sourceStart": 390.06,
+      "sourceEnd": 393.38,
+      "originalContext": "Kennedy's opening statement at his Senate confirmation hearing, discussing farmers and food policy. Source trim times refer to the 8m20s audio-only Commons derivative, not the full hearing. These are not remarks about animals or the game."
+    },
+    {
+      "id": "rfk-healthy-foods",
+      "speaker": "rfk-jr",
+      "label": "We will make sure our tax dollars support healthy foods.",
+      "text": "We will make sure our tax dollars support healthy foods.",
+      "src": "cast-clips/rfk-healthy-foods.mp3",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:RFK_Jr.%27s_Opening_Statement_to_the_U.S_Senate_during_a_Confirmation_Hearing.ogg",
+      "duration": 3.49,
+      "contexts": [
+        "lunch",
+        "delivery",
+        "general"
+      ],
+      "sourceId": "rfk-senate-2025-01-29",
+      "sourceStart": 468.97,
+      "sourceEnd": 472.46,
+      "originalContext": "Kennedy's opening statement at his Senate confirmation hearing, discussing farmers and food policy. Source trim times refer to the 8m20s audio-only Commons derivative, not the full hearing. These are not remarks about animals or the game."
+    }
+  ]
+}

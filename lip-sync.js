@@ -1,4 +1,4 @@
-import {VOICE_VISEMES} from './assets/audio/trump-clips/visemes.js';
+import {VOICE_VISEMES} from './assets/audio/voice-visemes.js';
 export const CLOSED_VISEMES = Object.freeze({jawOpen:0,mouthWide:0,mouthRound:0});
 const SHAPES = {closed:[0,0,0],AA:[1,.18,0],EE:[.38,1,0],OO:[.5,0,1],FV:[.12,.42,0],MBP:[0,.08,.08]};
 export function sampleViseme(clip,time) {

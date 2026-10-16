@@ -1,0 +1,84 @@
+[
+  {
+    "id": "goose",
+    "displayName": "Duck",
+    "url": "./assets/models/animals/duck.glb",
+    "height": 0.6,
+    "targetHeight": 0.6,
+    "forwardRotationY": 0,
+    "triangles": 10263,
+    "bytes": 2488912,
+    "textures": [
+      [
+        1024,
+        1024
+      ],
+      [
+        1024,
+        1024
+      ],
+      [
+        1024,
+        1024
+      ]
+    ],
+    "skins": 0,
+    "animations": 0,
+    "bounds": [
+      [
+        -0.6162599325180054,
+        -0.9503589272499084,
+        -0.7686070203781128
+      ],
+      [
+        0.614296019077301,
+        0.9475679993629456,
+        0.7654769420623779
+      ]
+    ],
+    "source": "assets/animals/duck/source/duck-meshy-10k.glb",
+    "sha256": "d67226ad41119cd9fe3e8992fa97ff5f8c518e232172ebbe3d17edc85efd4f47",
+    "sourcePathBase": "project root (preserved source, not a runtime URL)"
+  },
+  {
+    "id": "raccoon",
+    "displayName": "Raccoon",
+    "url": "./assets/models/animals/raccoon.glb",
+    "height": 0.65,
+    "targetHeight": 0.65,
+    "forwardRotationY": 0,
+    "triangles": 10345,
+    "bytes": 2900560,
+    "textures": [
+      [
+        1024,
+        1024
+      ],
+      [
+        1024,
+        1024
+      ],
+      [
+        1024,
+        1024
+      ]
+    ],
+    "skins": 0,
+    "animations": 0,
+    "bounds": [
+      [
+        -0.4814859628677368,
+        -0.87226402759552,
+        -0.9503638744354248
+      ],
+      [
+        0.47937697172164917,
+        0.8677639365196228,
+        0.9478799700737
+      ]
+    ],
+    "source": "assets/animals/raccoon/source/raccoon-meshy-10k.glb",
+    "sha256": "22a4d0e758e7fef738333a927f84954870f0f0d4e591e95eb6a43df924ca81ba",
+    "sourcePathBase": "project root (preserved source, not a runtime URL)"
+  }
+]

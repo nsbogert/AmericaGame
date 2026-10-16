@@ -16,7 +16,7 @@ For local play, run `node build.mjs`, then `npm start`, and open http://127.0.0.
 - Escape / P / Clipboard: pause.
 - Expand: full-screen room; Exit fullscreen returns to the page.
 - Mix audio: independent music, effects, and archival voice controls.
-- Cast close-up & voice test: pauses the shift to inspect all five faces, try reactions and mouth shapes, and audition the four real Trump clips. Done or Escape restores the previous screen.
+- Cast close-up & voice test: pauses the shift to inspect all five faces, try reactions and mouth shapes, and audition the sourced cast clips. Done or Escape restores the previous screen.
 
 Match the colored props to their destinations. Vance may change an unfinished delivery's destination. Completed stations are vulnerable: Trump takes four seconds to undo one; roaming animals take five. Interrupt Trump, catch the animals or lure them out with bait, and recover loose props for free. The misrouted briefing must be carried from the desk to the service exit.
 
@@ -24,7 +24,7 @@ Once all three props are ready, GO LIVE starts the finale immediately. Keep the 
 
 ## Assets and source
 
-`assets/models` contains delivery-sized textured GLBs; original Meshy exports are preserved in the parent project. `assets/audio` contains a Suno instrumental loop and Suno stamp, goose, and applause effects, plus small synthesized gameplay cues. `assets/audio/trump-clips/sources.json` documents four authentic 2020 White House speech excerpts. Game dialogue is invented parody and is not a transcript of those clips.
+`assets/models` contains delivery-sized textured GLBs; original Meshy exports are preserved in the parent project. `assets/audio` contains a Suno instrumental loop and Suno stamp, goose, and applause effects, plus small synthesized gameplay cues. `assets/audio/trump-clips/sources.json` documents the original four authentic 2020 White House speech excerpts. Game dialogue is invented parody and is not a transcript of those clips.
 
 `sim.js` owns deterministic game rules, `renderer.js` the Three.js room and characters, `app.js` the interface and controls, and `audio.js` the audio mix. Run `npm test` for routed winning playthroughs and focused mechanics checks. `node build.mjs` refreshes the deployable `dist/` folder.
 
@@ -35,3 +35,9 @@ The main project documentation has the current gameplay notes, character product
 All five characters have runtime facial morphs, blinks and event-driven reactions. A close-up camera shows the same 3D actor beside the ballroom. Trump uses five stylized speech shapes timed to the actual recording, including its pauses. Mute, pause, stop and disabled voice close the speaking mouth. These are approximate puppet mouth shapes, not exact human lip reading.
 
 The original GLBs retain their body rigs; `faces.js` creates facial controls at runtime. `lip-sync.js` samples the measured audio envelopes and authored shape timing. Run `node audio-tests.mjs` and `node face-tests.mjs` for audio lifecycle and real-model geometry checks.
+
+## Cast voices and wildlife
+
+There are 16 authentic recorded reactions: 10 Trump, two RFK Jr., two Vance, and two Hegseth. Contextual variation and a short bounded introduction queue space them out without overlap. Each speaker drives their own model’s mouth and close-up. The recording credits page preserves quotes, original context, dates and sources.
+
+The duck and raccoon use optimized textured GLBs in `assets/models/animals`, with procedural waddling and small head/tail motion. Original source exports are kept outside the game folder under the parent project’s `assets/animals`. Existing catching, escorting and sabotage rules are unchanged.
