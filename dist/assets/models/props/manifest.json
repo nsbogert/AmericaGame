@@ -1,0 +1,21 @@
+[
+  {
+    "id": "soldiers",
+    "url": "./assets/models/props/soldiers.glb",
+    "footprint": 0.78
+  },
+  {
+    "id": "couch",
+    "url": "./assets/models/props/couch.glb",
+    "footprint": 1.0
+  },
+  {
+    "id": "roadkill",
+    "url": "./assets/models/props/roadkill.glb",
+    "footprint": 0.62,
+    "rotateX": -1.5708,
+    "squashY": 0.32,
+    "lift": 0.045,
+    "asphalt": true
+  }
+]

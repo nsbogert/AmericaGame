@@ -19,7 +19,7 @@ For local play, run `node build.mjs`, then `npm start`, and open http://127.0.0.
 - Mix audio: independent music, effects, and archival voice controls.
 - Cast close-up & voice test: pauses the shift to inspect all five faces, try reactions and mouth shapes, and audition the sourced cast clips. Done or Escape restores the previous screen.
 
-Match the colored props to their destinations. Vance may change an unfinished delivery's destination. Completed stations are vulnerable: Trump takes four seconds to undo one; roaming animals take five. Interrupt Trump, catch the animals or lure them out with bait, and recover loose props for free. The misrouted briefing must be carried from the desk to the service exit.
+Choose First Day, Second Term or Fourth Term before clocking in; harder tiers multiply your rating. Match the colored props to their destinations. Vance may change an unfinished delivery's destination. Completed stations are vulnerable: On First Day Trump takes four seconds to undo one and roaming animals take five; harder tiers are quicker. Interrupt Trump, catch the animals or lure them out with bait, and recover loose props for free. The misrouted briefing must be carried from the desk to the service exit.
 
 Once all three props and all three room jobs are ready, GO LIVE starts the finale immediately. Keep the mic on to earn clean airtime, use applause or ribbon ceremonies to distract Trump, and clear the two urgent incidents before the shot ends. The shift also attempts to go live when only 30 seconds remain.
 
@@ -46,3 +46,7 @@ The duck and raccoon use optimized textured GLBs in `assets/models/animals`, wit
 ## Live-mic interruptions
 
 Trump’s speech drives a bent-elbow accordion hand gesture as well as his mouth. The close-up eases out to include his hands. At the live microphone, he launches into a longer authentic, self-congratulatory excerpt. Turning his mic off mid-speech cuts the recording and produces a brief feedback whine; normal idle mic toggles do not. Applause and ribbon distractions also interrupt the speech.
+
+## Chaos cast and lures
+
+Hegseth, RFK Jr. and Vance now wander the ballroom and scheme: Hegseth leaks finished jobs to "the group chat" and shoulders you aside, RFK spills raw milk and does push-ups in the live shot, and Vance flips delivery targets and demands a thank-you. Press E beside anyone mid-scheme to shoo them, or use their lure: applause or ribbon for Trump, toy soldiers for Hegseth, the cozy couch for Vance, roadkill for RFK. Each shift ends with a graded rating, and your best score per difficulty is remembered on this device. Run `node cast-tests.mjs` for the cast rules and the every-tier-winnable gate, and `node tools/balance.mjs` for the balance matrix. Lure props and sounds are documented in `../docs/lure-props-production.md`.

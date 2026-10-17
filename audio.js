@@ -1,6 +1,10 @@
 import {sampleViseme,getClipData,CLOSED_VISEMES} from './lip-sync.js';
 import {VOICE_CATALOG} from './assets/audio/voice-catalog.js';
 const ROOT = new URL('./assets/audio/', import.meta.url);
+// Cast events carry an explicit speaker (`who`); caption parsing is only a fallback for older event shapes.
+export const castSpeakerOf=event=>{if(event?.who)return event.who;const t=String(event?.text||'');return /HEGSETH/.test(t)?'hegseth':/RFK/.test(t)?'rfk-jr':/VANCE/.test(t)?'vance':null;};
+// Each lure gets its own effect plus a line from a context that already holds that speaker's clips.
+const LURE_SFX={hegseth:'pew',vance:'thump','rfk-jr':'roadkill'},LURE_VOICE={hegseth:'briefing',vance:'vance','rfk-jr':'lunch'};
 export class AudioDirector {
   constructor() {
     this.musicVolume = .3; this.sfxVolume = .65; this.muted = false; this.active = false;
@@ -8,8 +12,9 @@ export class AudioDirector {
     this.music.loop = true; this.music.preload = 'none'; this.music.volume = this.musicVolume;
     this.voiceVolume = .65; this.voiceEnabled = true; this.voice = null; this.lastVoice = -10000; this.deliveryCount = 0; this.ducked = false;
     this.voiceBags=new Map();this.lastByContext=new Map();this.voiceQueue=[];this.lastEvent = 0; this.cooldowns = new Map(); this.samples = new Map();
-    for (const type of ['stamp', 'applause', 'goose']) {
-      const sample = new Audio(new URL(`${type}.mp3`, ROOT)); sample.preload = 'none';
+    // Suno one-shots; the lure takes are trimmed AAC (tools/trim-audio.swift). A failed play falls back to synthesis.
+    for (const [type, file] of Object.entries({stamp:'stamp.mp3', applause:'applause.mp3', goose:'goose.mp3', pew:'pew.m4a', thump:'couch.m4a', roadkill:'roadkill.m4a'})) {
+      const sample = new Audio(new URL(file, ROOT)); sample.preload = 'none';
       this.samples.set(type, sample);
     }
   }
@@ -98,6 +103,8 @@ export class AudioDirector {
     else if (type === 'alert' || type === 'hit') { tone(660,0,.11,'square',440); tone(660,.16,.13,'square',330); }
     else if (type === 'goose') { tone(330,0,.18,'sawtooth',190); tone(290,.19,.2,'sawtooth',170); }
     else if (type === 'dash') tone(180,0,.15,'triangle',800);
+    else if (type === 'pew') { tone(1400,0,.12,'square',380); tone(1250,.15,.14,'sawtooth',300); }
+    else if (type === 'thump') { tone(95,0,.24,'sine',40); tone(160,.02,.12,'triangle',60); }
     else if (type === 'pickup') { tone(620,0,.1,'triangle'); tone(930,.07,.16,'triangle'); }
     else { tone(115,0,.09,'triangle',45); tone(1000,.025,.055,'sine',400); }
   }
@@ -108,11 +115,14 @@ export class AudioDirector {
       const id = typeof event === 'object' ? event.id ?? event.eventId : null;
       if (typeof id === 'number') { if (id <= this.lastEvent) continue; this.lastEvent = id; }
       const type = typeof event === 'object' ? event.type : '';
-      const effects = {'job-stage':'stamp','job-complete':'stamp','mic-cutoff':'mic-feedback',win:'win',lose:'lose',lunch:'goose',catch:'goose',damage:'alert',tamper:'alert',warning:'alert',briefing:'alert',vance:'alert',resolve:'stamp',delivery:'stamp',pickup:'pickup',drop:'stamp',dash:'dash',mic:'pickup',broadcast:'alert',blocked:'alert'};
+      const effects = {'job-stage':'stamp','job-complete':'stamp','mic-cutoff':'mic-feedback',win:'win',lose:'lose',lunch:'goose',catch:'goose',damage:'alert',tamper:'alert',warning:'alert',briefing:'alert',vance:'alert',resolve:'stamp',delivery:'stamp',pickup:'pickup',drop:'stamp',dash:'dash',mic:'pickup',broadcast:'alert',blocked:'alert','cast-warning':'alert','cast-effect':'stamp','cast-shove':'stamp','shoo-cast':'stamp','cast-latch':'alert','cast-thanks':'pickup'};
       if(['mic-cutoff','distraction','shoo','lose','win'].includes(type))this.stopMicSpeech();
-      if (type === 'distraction') this.play(String(event.text || '').toLowerCase().includes('applause') || String(event.text || '').includes('noise') ? 'applause' : 'stamp');
+      const lureSpeaker = type === 'lure' ? castSpeakerOf(event) : null;
+      if (type === 'lure') this.play(LURE_SFX[lureSpeaker] || 'stamp');
+      else if (type === 'distraction') this.play(String(event.text || '').toLowerCase().includes('applause') || String(event.text || '').includes('noise') ? 'applause' : 'stamp');
       else if (effects[type]) this.play(effects[type]);
       if(type==='lose'){this.voiceQueue=[];this.stopVoice();}
+      else if(lureSpeaker)this.requestVoice(lureSpeaker,LURE_VOICE[lureSpeaker]);
       else if(type==='lunch')this.requestVoice('rfk-jr','lunch',3);
       else if(type==='vance')this.requestVoice('vance','vance',3);
       else if(type==='briefing')this.requestVoice('hegseth','briefing',3);
